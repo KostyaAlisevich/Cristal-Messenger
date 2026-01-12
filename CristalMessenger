@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cristal Messenger</title>
+
+<style>
+:root{
+  --bg-main: linear-gradient(180deg, #1b1b3a, #0f1024);
+  --bg-panel: #181836;
+  --accent: #6C63FF;
+  --accent-soft: #8a84ff;
+  --text-main: #ffffff;
+  --text-muted: #b8b8d4;
+  --card-bg: #ffffff;
+  --card-text: #111;
+  --radius: 16px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;}
+
+body{
+  background: var(--bg-main);
+  color: var(--text-main);
+  display:flex;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* ===== LEFT NAV ===== */
+.nav{
+  width:240px;
+  background:#14142f;
+  padding:20px 15px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.logo{
+  height:48px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#6C63FF,#4a42ff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.nav a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  border-radius:12px;
+  color:var(--text-muted);
+  text-decoration:none;
+  transition:.2s;
+}
+
+.nav a:hover{
+  background:#1f1f46;
+  color:#fff;
+}
+
+/* ===== MAIN ===== */
+.main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== TOP BAR ===== */
+.top{
+  height:60px;
+  background:linear-gradient(90deg,#6C63FF,#4a42ff);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+}
+
+.search{
+  background:rgba(255,255,255,.15);
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  color:#fff;
+  outline:none;
+}
+
+.top-right{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.btn{
+  background:#fff;
+  color:#4a42ff;
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* ===== CONTENT ===== */
+.content{
+  flex:1;
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:20px;
+  padding:20px;
+  overflow:auto;
+}
+
+/* ===== FEED ===== */
+.feed{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.post{
+  background:var(--card-bg);
+  color:var(--card-text);
+  border-radius:var(--radius);
+  padding:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.post-actions{
+  display:flex;
+  gap:15px;
+  margin-top:10px;
+}
+
+.post-actions button{
+  border:none;
+  background:none;
+  cursor:pointer;
+  color:#555;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  background:var(--bg-panel);
+  border-radius:var(--radius);
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.sidebar h3{
+  font-size:16px;
+  color:#fff;
+}
+
+.friend{
+  font-size:14px;
+  color:var(--text-muted);
+}
+
+/* ===== MESSENGER ===== */
+.messenger{
+  position:fixed;
+  bottom:0;
+  right:20px;
+  width:380px;
+  height:520px;
+  background:#14142f;
+  border-radius:20px 20px 0 0;
+  display:flex;
+  overflow:hidden;
+  box-shadow:0 0 30px rgba(0,0,0,.4);
+}
+
+.dialogs{
+  width:120px;
+  background:#101028;
+  padding:10px;
+  overflow:auto;
+}
+
+.dialog{
+  padding:8px;
+  border-radius:10px;
+  color:var(--text-muted);
+  cursor:pointer;
+}
+
+.dialog:hover{
+  background:#1f1f46;
+}
+
+.chat{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+.messages{
+  flex:1;
+  padding:10px;
+  overflow:auto;
+}
+
+.msg{
+  background:#1f1f46;
+  padding:8px 12px;
+  border-radius:12px;
+  margin-bottom:8px;
+  max-width:75%;
+}
+
+.input{
+  display:flex;
+  padding:10px;
+  gap:8px;
+}
+
+.input input{
+  flex:1;
+  border:none;
+  border-radius:20px;
+  padding:8px 12px;
+}
+
+.input button{
+  background:var(--accent);
+  border:none;
+  color:#fff;
+  border-radius:50%;
+  width:36px;
+  cursor:pointer;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:900px){
+  .nav{display:none;}
+  .content{grid-template-columns:1fr;}
+  .sidebar{display:none;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LEFT NAV -->
+<div class="nav">
+  <div class="logo">CRISTAL</div>
+  <a href="#">👤 Моя страница</a>
+  <a href="#">📰 Новости</a>
+  <a href="#">💬 Мессенджер</a>
+  <a href="#">👥 Друзья</a>
+  <a href="#">👪 Группы</a>
+  <a href="#">📷 Фото</a>
+  <a href="#">🎵 Музыка</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="top">
+    <input class="search" placeholder="Поиск">
+    <div class="top-right">
+      🔔
+      <img src="https://i.imgur.com/6VBx3io.png" width="36" style="border-radius:50%">
+      <button class="btn">Новый пост</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="feed">
+      <div class="post">
+        <b>Алексей</b>
+        <p>Добро пожаловать в Cristal Messenger 💎</p>
+        <div class="post-actions">
+          <button onclick="like(this)">❤️ <span>0</span></button>
+          <button>💬 Коммент</button>
+          <button>🔁 Репост</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h3>Онлайн</h3>
+      <div class="friend">• Мария</div>
+      <div class="friend">• Иван</div>
+
+      <h3>Музыка</h3>
+      <audio controls style="width:100%">
+        <source src="">
+      </audio>
+    </div>
+  </div>
+</div>
+
+<!-- MESSENGER -->
+<div class="messenger">
+  <div class="dialogs">
+    <div class="dialog">Мария</div>
+    <div class="dialog">Иван</div>
+  </div>
+
+  <div class="chat">
+    <div class="messages" id="messages"></div>
+    <div class="input">
+      <input id="msgInput" placeholder="Сообщение">
+      <button onclick="send()">➤</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function like(btn){
+  const span = btn.querySelector("span");
+  span.textContent = +span.textContent + 1;
+}
+
+function send(){
+  const input = document.getElementById("msgInput");
+  if(!input.value) return;
+  const msg = document.createElement("div");
+  msg.className="msg";
+  msg.textContent=input.value;
+  document.getElementById("messages").appendChild(msg);
+  input.value="";
+}
+</script>
+
+</body>
+</html>
